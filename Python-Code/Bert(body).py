@@ -66,12 +66,10 @@ print("Loading BERT Tokenizer...")
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased',do_lower_case=True)
 #model = BertForSequenceClassification.from_pretrained("bert-base-uncased", num_labels=3)
 
-path = '/home/adbuls/Title-Data/'
-#path = '/home/adbuls/Final-labelled-data/'
+path = '/home/adbuls/Final-labelled-data/'
 csv_files = glob.glob(os.path.join(path, "*.csv"))
 print(len(csv_files))
 o = pd.DataFrame(columns =["file","model","Accuracy","Precision","Recall","F1","input"])
-
 
 model2 = BertForSequenceClassification.from_pretrained("bert-base-uncased", num_labels=2)
 model3 = BertForSequenceClassification.from_pretrained("bert-base-uncased", num_labels=3)
@@ -85,27 +83,11 @@ for f in csv_files:
     data = pd.read_csv(f)
 
 
-    Features = data.filter(['title','allinferences','heads-senti','allinferences-senti','class','senti-str-headline'], axis=1)
-    #Features['heads-senti']= Features['heads-senti'].fillna(0)
-    #Features['allinferences-senti']= Features['allinferences-senti'].fillna(0)
-    #Features['allinferences']= Features['allinferences'].fillna("")
-    Features['title']= Features['title'].fillna("")
-    Features['senti-str-headline']= Features['senti-str-headline'].fillna("")
-    Features['allinferences']= Features['allinferences'].fillna("")
-    Features['class']= Features['class'].fillna("")
-    print("im here")
-    print(len(Features))    
-    Features['title'] = Features['title'].dropna("").reset_index(drop=True)
-    print(len(Features)) 
-    Features['senti-str-headline'] = Features['senti-str-headline'].dropna("").reset_index(drop=True)
-    print(len(Features)) 
-    Features['allinferences'] = Features['allinferences'].dropna("").reset_index(drop=True)
-    print(len(Features)) 
-    Features['class'] = Features['class'].dropna("").reset_index(drop=True)
-    Features['class'].dropna("")
-    print(len(Features)) 
-    print("im here")
-    print(len(Features)) 
+    Features = data.filter(['title','body','cons','class'], axis=1)
+    Features['body']= Features['body'].fillna("")
+    stop_words_l= stopwords.words('english')
+    Features['body'] .apply(lambda x: [item for item in x if item not in stop_words_l])
+    Features['body'] = Features['body'].map(lambda x: x.lower())
     Features.dropna(inplace=True, subset=['class'])
     Features = Features[pd.notnull(Features['class'])]
 
@@ -125,22 +107,14 @@ for f in csv_files:
         
     elif len(Features["class"].unique()) == 3:
         model = model3
-
-    Features['title'] = Features["title"].astype(str) + Features["allinferences"].astype(str)
-    Features['title'] = Features["title"].astype(str) + Features["senti-str-headline"].astype(str)
     stop_words_l= stopwords.words('english')
-    Features['title'].dropna().apply(lambda x: [item for item in x if item not in stop_words_l])
-    Features['title'] = Features['title'].dropna().map(lambda x: x.lower())
-    #Features['allinferences'] .apply(lambda x: [item for item in x if item not in stop_words_l])
-    #Features['allinferences'] = Features['allinferences'].map(lambda x: x.lower())
+    Features['body'].dropna().apply(lambda x: [item for item in x if item not in stop_words_l])
+    
     print(len(Features)) 
-    print("im here")
-    print(len(Features))
-    print("classes")
     print(Features["class"].unique())
     print(len(Features["class"].unique()))
     print(Features['class'].value_counts())
-    train = Features.filter(['title'])
+    train = Features.filter(['body'])
     test  = Features.filter(['class'])
     print("features")
     print(len(train))
@@ -148,8 +122,7 @@ for f in csv_files:
     classes = label_encoder.fit_transform(test)
     X_train, X_test, y_train, y_test = train_test_split(train, classes.ravel(),test_size=0.2, shuffle = True, random_state = 8,stratify=classes)
     X_train, X_val, y_train, y_val   = train_test_split(X_train, y_train.ravel(), test_size=0.25, random_state= 8,stratify=y_train)
-    Features = Features.filter(['title','class'])
-    print("im here")
+    Features = Features.filter(['body','class'])
     print(len(Features))
     try:
         sen_w_feats = []
@@ -305,4 +278,4 @@ for f in csv_files:
         fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
         print(exc_type, fname, exc_tb.tb_lineno)
         print(str(e))
-o.to_csv(os.path.join("PM-BERT-Headlines.csv"))
+o.to_csv(os.path.join("BERT-Body.csv"))
