@@ -38,7 +38,6 @@ label_encoder = LabelEncoder()
 
 
 path = '/home/adbuls/Title-Data/'
-#path = '/home/adbuls/sample/'
 csv_files = glob.glob(os.path.join(path, "*.csv"))
 print(len(csv_files))
 print(len(csv_files))
