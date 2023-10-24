@@ -117,4 +117,4 @@ for f in csv_files:
     pr =precision_score(y_test, test_pred, average="macro")
     new_row = {"file":filename,"model":"LSTM","Accuracy":str(round(acs,2)),"Precision":str(round(pr,2)),"Recall":str(round(re,2)),"F1":str(round(f1,2))}
     o = o.append(new_row,ignore_index=True)
-o.to_csv(os.path.join("LSTM-Barrier-Classification-Results.csv"))
+o.to_csv(os.path.join("LSTM-Body.csv"))
