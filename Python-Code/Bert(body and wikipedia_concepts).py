@@ -66,12 +66,10 @@ print("Loading BERT Tokenizer...")
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased',do_lower_case=True)
 #model = BertForSequenceClassification.from_pretrained("bert-base-uncased", num_labels=3)
 
-path = '/home/adbuls/Title-Data/'
-#path = '/home/adbuls/Final-labelled-data/'
+path = '/home/adbuls/Final-labelled-data/'
 csv_files = glob.glob(os.path.join(path, "*.csv"))
 print(len(csv_files))
 o = pd.DataFrame(columns =["file","model","Accuracy","Precision","Recall","F1","input"])
-
 
 model2 = BertForSequenceClassification.from_pretrained("bert-base-uncased", num_labels=2)
 model3 = BertForSequenceClassification.from_pretrained("bert-base-uncased", num_labels=3)
