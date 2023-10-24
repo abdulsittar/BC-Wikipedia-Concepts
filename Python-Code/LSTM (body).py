@@ -47,8 +47,7 @@ label_encoder = LabelEncoder()
 
 
 
-path = '/home/adbuls/Title-Data/'
-#path = '/home/adbuls/Final-labelled-data/'
+path = '/home/adbuls/Final-labelled-data/'
 csv_files = glob.glob(os.path.join(path, "*.csv"))
 print(len(csv_files))
 o = pd.DataFrame(columns =["file","model","Accuracy","Precision","Recall","F1","input"])
