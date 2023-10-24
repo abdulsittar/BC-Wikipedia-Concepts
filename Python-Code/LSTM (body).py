@@ -65,7 +65,7 @@ for f in csv_files:
     Features['body'] = Features['body'].map(lambda x: x.lower())
     train = Features.filter(['body'], axis=1)
     test  = Features.filter(['Label'], axis=1)
-    x = Features['title'].values
+    x = Features['body'].values
     y = Features['Label'].values
     #print(x)
     classes = label_encoder.fit_transform(test)
