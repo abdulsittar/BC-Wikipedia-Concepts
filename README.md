@@ -9,14 +9,14 @@ The dissemination of information worldwide is significantly facilitated by the n
 ![](/assets/MetaDataBarriers-1.png "MetaDataBarriers-1")
 
 ## Information Spreading
-![](/assets/ArticlePerPublisher.PNG "ArticlePerPublisher")
-![](/assets/NumberOfPublisher.PNG "NumberOfPublisher")
-![](/assets/EventsPerPublishers.PNG "EventsPerPublishers")
-![](/assets/venn_resultr.PNG "venn_result")
-![](/assets/venn_result2.PNG "venn_result2")
+![](/assets/ArticlePerPublisher.png "ArticlePerPublisher")
+![](/assets/NumberOfPublisher.png "NumberOfPublisher")
+![](/assets/EventsPerPublishers.png "EventsPerPublishers")
+![](/assets/venn_resultr.png "venn_result")
+![](/assets/venn_result2.png "venn_result2")
 
 ## Results
-![](/assets/WC-Avg-resul.PNG "WC-Avg-resul")
+![](/assets/WC-Avg-resul.png "WC-Avg-resul")
 
 ## Requirements
 
