@@ -12,7 +12,7 @@ The dissemination of information worldwide is significantly facilitated by the n
 ![](/assets/ArticlePerPublisher.png "ArticlePerPublisher")
 ![](/assets/NumberOfPublisher.png "NumberOfPublisher")
 ![](/assets/EventsPerPublishers.png "EventsPerPublishers")
-![](/assets/venn_resultr.png "venn_result")
+![](/assets/venn_result.png "venn_result")
 ![](/assets/venn_result2.png "venn_result2")
 
 ## Results
