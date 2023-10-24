@@ -46,9 +46,7 @@ from sklearn.metrics import precision_score, recall_score, confusion_matrix, cla
 label_encoder = LabelEncoder()
 
 
-
-path = '/home/adbuls/Title-Data/'
-#path = '/home/adbuls/Final-labelled-data/'
+path = '/home/adbuls/Final-labelled-data/'
 csv_files = glob.glob(os.path.join(path, "*.csv"))
 print(len(csv_files))
 o = pd.DataFrame(columns =["file","model","Accuracy","Precision","Recall","F1","input"])
@@ -66,7 +64,7 @@ for f in csv_files:
     Features['body'] = Features['body'].map(lambda x: x.lower())
     train = Features.filter(['body'], axis=1)
     test  = Features.filter(['Label'], axis=1)
-    x = Features['title'].values
+    x = Features['body'].values
     y = Features['Label'].values
     #print(x)
     classes = label_encoder.fit_transform(test)
